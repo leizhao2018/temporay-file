@@ -14,15 +14,7 @@ import netCDF4
 
 def nearlonlat(lon,lat,lonp,latp): # needed for the next function get_FVCOM_bottom_temp 
     """ 
-    i,min_dist=nearlonlat(lon,lat,lonp,latp) change 
-    find the closest node in the array (lon,lat) to a point (lonp,latp) 
-    input: 
-        lon,lat - np.arrays of the grid nodes, spherical coordinates, degrees 
-        lonp,latp - point on a sphere 
-        output: 
-            i - index of the closest node 
-            min_dist - the distance to the closest node, degrees 
-            For coordinates on a plane use function nearxy 
+   
     """ 
     # approximation for small distance 
     cp=np.cos(latp*np.pi/180.) 
@@ -44,7 +36,8 @@ def get_depth(loni,lati):
     return nc['z'][yi,xi],min_dist
 
 
-
 #hardcode
 lon,lat=-69.55500,42.40503
-print(get_depth(loni=lon,lati=lat))
+depth,distance=get_depth(loni=lon,lati=lat)
+print('depth:  '+str(depth))
+print('distance:  '+str(distance)+' km')
